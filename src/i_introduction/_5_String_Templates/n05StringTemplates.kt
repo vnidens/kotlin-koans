@@ -1,5 +1,6 @@
 package i_introduction._5_String_Templates
 
+import com.sun.org.apache.bcel.internal.generic.MONITORENTER
 import util.TODO
 import util.doc5
 
@@ -35,4 +36,4 @@ fun todoTask5(): Nothing = TODO(
     documentation = doc5(),
     references = { getPattern(); month })
 
-fun task5(): String = todoTask5()
+fun task5(): String = """\d{2}\s$month\s\d{4}"""
