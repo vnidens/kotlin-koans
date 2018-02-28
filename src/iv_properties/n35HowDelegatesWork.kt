@@ -29,8 +29,13 @@ class D {
 class EffectiveDate<R> : ReadWriteProperty<R, MyDate> {
     var timeInMillis: Long? = null
 
-    operator override fun getValue(thisRef: R, property: KProperty<*>): MyDate = todoTask35()
-    operator override fun setValue(thisRef: R, property: KProperty<*>, value: MyDate) = todoTask35()
+    operator override fun getValue(thisRef: R, property: KProperty<*>): MyDate {
+        return timeInMillis?.toDate()
+                ?: throw UninitializedPropertyAccessException("property ${property.name} hasn't been initialized")
+    }
+    operator override fun setValue(thisRef: R, property: KProperty<*>, value: MyDate) {
+        timeInMillis = value.toMillis()
+    }
 }
 
 fun MyDate.toMillis(): Long {
